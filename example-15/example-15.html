@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title>How to add and delete HTML elements</title>
+	</head>
+
+	<body>
+
+		<p id="ex1"></p>
+
+		<p class="ex2"></p>
+		<p class="ex2"></p>
+
+		<p style="color:blue">This element is not styled by 
+			Javascript</p>
+		<p id="ex3">This element is styled by Javascript</p>
+		
+		<p style="background-color:blue; color:white">This element
+		 	is not styled by Javascript</p>
+		<p id="ex4">This element is styled by Javascript</p>
+
+		<p onclick="changeText(this)">Click on this text!</p>
+
+		<p onmouseover="mouseOver(this)" onmouseout="mouseOut(this)" 
+			style="background-color:red; width:120px; padding:20px">mouse is not over</p>
+
+		<p onmousedown="mouseDown(this)" onmouseup="mouseUp(this)" 
+			style="background-color:red; width:120px; padding:20px">mouse is not down</p>
+
+		
+		<div id="div1">
+			<p id="p1">This is the first paragraph</p>
+			<p id="p2">This is the second paragraph</p>
+		</div>
+
+		<div id="div2">
+			<p id="p3">This is a paragraph</p>
+			<p id="p4">This is another paragraph.</p>
+		</div>
+
+		<script>
+			document.getElementById("ex1").innerHTML = "I'm a paragraph element with a unique id";
+
+	
+			var arr = document.getElementsByClassName("ex2");
+
+			arr[0].innerHTML = "I'm the first paragraph in this class";
+			arr[1].innerHTML = "I'm the second paragraph in this class";
+
+			var arr2 = document.getElementsByTagName("p");
+
+			arr2[0].innerHTML += "!";
+			arr2[1].innerHTML += "!";	
+			arr2[2].innerHTML += "!";
+
+			document.getElementById("ex3").style.color = "red";
+
+			document.getElementById("ex4").style.backgroundColor = "red";
+
+			function changeText(id) {
+    				id.innerHTML = "Text has been clicked!";
+			}
+
+			function mouseOver(id) {
+				id.innerHTML = "mouse is over";
+				id.style.backgroundColor = "blue";
+				id.style.color = "white";
+			}
+
+			
+			function mouseOut(id) {
+				id.innerHTML = "mouse not over";
+				id.style.backgroundColor = "red";
+				id.style.color = "black";
+			}
+
+			function mouseDown(id) {
+				id.innerHTML = "mouse is down";
+				id.style.backgroundColor = "blue";
+				id.style.color = "white";
+			}
+
+			
+			function mouseUp(id) {
+				id.innerHTML = "mouse is up";
+				id.style.backgroundColor = "red";
+				id.style.color = "black";
+			}
+
+
+			var para = document.createElement("p");
+			var node = document.createTextNode("This is appended after the last paragraph");
+			para.appendChild(node);
+
+			var element = document.getElementById("div1");
+			element.appendChild(para);
+
+			var para2 = document.createElement("p");
+			var node2 = document.createTextNode("This is appended before the first paragraph");
+			para2.appendChild(node2);
+
+			var child = document.getElementById("p1");
+			element.insertBefore(para2, child);
+
+			var parent = document.getElementById("div2");
+			var child2 = document.getElementById("p3");
+			parent.removeChild(child2);
+		</script>
+	</body>
+</html> 
